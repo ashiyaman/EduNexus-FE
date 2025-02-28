@@ -9,7 +9,7 @@ import School from './features/School/School'
 function App() {
   return (
     <Router> 
-      <div className='container' style={{backgroundColor: '#F8F9FA'}}>     
+      <div style={{backgroundColor: '#F8F9FA'}}>     
         <Routes>
           <Route 
             path='/'
