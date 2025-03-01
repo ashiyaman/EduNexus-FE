@@ -17,7 +17,7 @@ const Students = () => {
         <>
             <Header />
             <main className='container py-4'>
-                <Link to='/students/studentForm' className='btn text-success-emphasis my-2 fw-semibold' style={{backgroundColor: '#E9B949'}}>Add Students</Link>
+                <Link to='/students/studentForm' className='btn text-success-emphasis my-2 fw-semibold' style={{backgroundColor: '#E9B949'}}>Add Student</Link>
                 <h2 className='text-dark'>Students List</h2>
                 {status === 'loading' && <p>Loading...</p>}
                 {error && <p>{error}</p>}
@@ -25,7 +25,7 @@ const Students = () => {
                     {students && 
                         students.map(student => 
                             <li key={student._id} className='text-success-emphasis'>
-                                <Link className='text-success-emphasis'>{student.name} (Age: {student.age})</Link>
+                                <Link to={`/students/${student._id}`} className='text-success-emphasis'>{student.name} (Age: {student.age})</Link>
                             </li>)
                     }
                 </ul>

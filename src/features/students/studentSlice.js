@@ -39,6 +39,17 @@ export const studentSlice = createSlice(
                     state.status = 'error',
                     state.error = action.error.message
                 })
+                .addCase(addStudentAsync.pending, (state) => {
+                    state.status = 'loading'
+                })
+                .addCase(addStudentAsync.fulfilled, (state, action) => {
+                    state.status = 'success',
+                    state.students.push(action.payload)
+                })
+                .addCase(addStudentAsync.rejected, (state, action) => {
+                    state.status = 'error',
+                    state.error = action.error.message
+                })
         }
     }
 )

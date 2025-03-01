@@ -7,6 +7,7 @@ import Students from './features/students/Students'
 import Classes from './features/Classes/Classes'
 import School from './features/School/School'
 import StudentForm from './features/students/StudentForm'
+import StudentDetail from './features/students/StudentDetail'
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
           <Route 
             path='/students/studentForm'
             element={<StudentForm />}/>
+            <Route 
+              path='/students/:studentId'
+              element={<StudentDetail />} />
         </Routes>
       </div>
     </Router>
