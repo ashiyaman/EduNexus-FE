@@ -9,9 +9,9 @@ export const fetchStudents = createAsyncThunk(
     }
 )
 
-export const addStudent = createAsyncThunk('students/addStudent' ,
-    async(studentData) => {
-        const response = await axios.post('https://edu-nexus-be.vercel.app/students', studentData)
+export const addStudentAsync = createAsyncThunk('students/addStudent' ,
+    async(newStudent) => {
+        const response = await axios.post('https://edu-nexus-be.vercel.app/students', newStudent)
         return response.data
     }
 )
@@ -25,9 +25,6 @@ export const studentSlice = createSlice(
             error: null
         },
         reducers: {
-            addStudent: (state, action) => {
-                console.log(action.payload)
-            }
         },
         extraReducers: (builder) => {
             builder

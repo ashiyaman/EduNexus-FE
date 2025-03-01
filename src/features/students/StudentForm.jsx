@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 
 import Header from "../../components/Header"
-import { addStudent } from "./studentSlice"
+import { addStudentAsync } from "./studentSlice"
 
 const StudentForm = () => {
     const dispatch = useDispatch()
@@ -11,21 +11,21 @@ const StudentForm = () => {
     const [grade, setGrade] = useState('')
     const [gender, setGender] = useState('')
 
-    const addStudentHandler = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         if(!name || !age || !grade || !gender){
             alert('Please enter all the details')
             return
         }
-        const studentData = {
+        const newStudent = {
             name: name,
             age: parseInt(age),
             grade: grade,
             gender: gender
         }
 
-        if(studentData){
-            dispatch(addStudent(studentData))
+        if(newStudent){
+            dispatch(addStudentAsync(newStudent))
             setName('')
             setAge('')
             setGrade('')
@@ -38,7 +38,7 @@ const StudentForm = () => {
             <Header />
             <main className="container py-4">
                 <h3 className="my-3">Add Student</h3>
-                <form onSubmit={addStudentHandler}>
+                <form onSubmit={handleSubmit}>
                     <input type='text' placeholder='Name' className='form-control' onChange={(e) => setName(e.target.value)} value={name} /><br/>
                     <input type='number' placeholder='Age' className='form-control' onChange={(e) => setAge(e.target.value)} value={age} /><br/>
                     <input type='text' placeholder='Grade' className='form-control' onChange={(e) => setGrade(e.target.value)} value={grade} /><br/>
