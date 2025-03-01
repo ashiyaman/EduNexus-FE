@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Students from './features/students/Students'
 import Classes from './features/Classes/Classes'
 import School from './features/School/School'
+import StudentForm from './features/students/StudentForm'
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           <Route 
             path='/school'
             element={<School />}/>
+          <Route 
+            path='/students/studentForm'
+            element={<StudentForm />}/>
         </Routes>
       </div>
     </Router>

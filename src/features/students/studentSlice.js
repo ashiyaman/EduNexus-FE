@@ -2,10 +2,17 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 
 export const fetchStudents = createAsyncThunk(
-    'fetch/students',
+    'students/fetchStudents',
     async () => {
         const response = await axios.get('https://edu-nexus-be.vercel.app/students')
         return response.data        
+    }
+)
+
+export const addStudent = createAsyncThunk('students/addStudent' ,
+    async(studentData) => {
+        const response = await axios.post('https://edu-nexus-be.vercel.app/students', studentData)
+        return response.data
     }
 )
 
@@ -18,7 +25,9 @@ export const studentSlice = createSlice(
             error: null
         },
         reducers: {
-
+            addStudent: (state, action) => {
+                console.log(action.payload)
+            }
         },
         extraReducers: (builder) => {
             builder
@@ -38,3 +47,4 @@ export const studentSlice = createSlice(
 )
 
 export default studentSlice.reducer
+
