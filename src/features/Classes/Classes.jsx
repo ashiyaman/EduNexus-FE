@@ -1,6 +1,11 @@
+import Header from "../../components/Header"
+
 const Classes = () => {
     return (
-        <h1>Classes</h1>
+        <>
+            <Header/>
+            <h1>Classes</h1>
+        </>
     )
 }
 

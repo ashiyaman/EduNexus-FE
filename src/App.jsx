@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 import Home from './pages/Home'
@@ -9,7 +10,7 @@ import School from './features/School/School'
 function App() {
   return (
     <Router> 
-      <div style={{backgroundColor: '#F8F9FA'}}>     
+      <main style={{backgroundColor: '#F8F9FA'}}>     
         <Routes>
           <Route 
             path='/'
@@ -24,7 +25,7 @@ function App() {
             path='/school'
             element={<School />}/>
         </Routes>
-      </div>
+      </main>
     </Router>
   )
 }

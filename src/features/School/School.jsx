@@ -1,6 +1,11 @@
+import Header from "../../components/Header"
+
 const School = () => {
     return (
-        <h1>School</h1>
+        <>
+            <Header />
+            <h1>School</h1>
+        </>
     )
 }
 
