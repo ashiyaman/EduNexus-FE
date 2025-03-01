@@ -10,7 +10,7 @@ import School from './features/School/School'
 function App() {
   return (
     <Router> 
-      <main style={{backgroundColor: '#F8F9FA'}}>     
+      <div style={{backgroundColor: '#F8F9FA'}}>     
         <Routes>
           <Route 
             path='/'
@@ -25,7 +25,7 @@ function App() {
             path='/school'
             element={<School />}/>
         </Routes>
-      </main>
+      </div>
     </Router>
   )
 }
