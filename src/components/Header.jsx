@@ -7,7 +7,7 @@ const Header = () => {
                 <a className='navbar-brand text-light'>
                     Student Management
                 </a>
-                <button className='navbar-toggler bg-light border-success-subtle' data-bs-toggle='collapse' data-bs-target='#collapsibleElement'>
+                <button className='navbar-toggler bg-light btn-outline-success' data-bs-toggle='collapse' data-bs-target='#collapsibleElement'>
                     <span className='navbar-toggler-icon'></span>
                 </button>
                 <div id='collapsibleElement' className='navbar collapse navbar-collapse'>                
