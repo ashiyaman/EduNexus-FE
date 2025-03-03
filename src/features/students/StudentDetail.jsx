@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Header from '../../components/Header'
-import { getStudentById } from './studentSlice'
+import { getStudentById, deleteStudentAsync } from './studentSlice'
 
 const StudentDetail = () => {
     const {studentId} = useParams()
@@ -14,6 +14,14 @@ const StudentDetail = () => {
     useEffect(() => {
         dispatch(getStudentById(studentId))
     }, [studentId])
+
+    const handleDelete = () => {
+        dispatch(deleteStudentAsync(selectedStudent._id))
+            .then(() => {
+                navigate('/students')
+            })
+        
+    }
 
     return (
         <>
@@ -34,7 +42,7 @@ const StudentDetail = () => {
                                 className='btn btn-warning text-light btn-outline-success fw-semibold '>
                                     Edit Details
                         </button>
-                        <Link className='btn btn-danger btn-outline-success fw-semibold mx-3'>Delete</Link>
+                        <Link onClick={() => handleDelete()} className='btn btn-danger btn-outline-success fw-semibold mx-3'>Delete</Link>
                     </div>
                 }                
             </main>

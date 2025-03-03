@@ -29,9 +29,15 @@ export const getStudentById = createAsyncThunk(
 export const updateStudentAsync = createAsyncThunk(
     'students/updateStudentData',
     async(studentData) => {
-        console.log()
         const response = await axios.put(`https://edu-nexus-be.vercel.app/students/${studentData._id}`, studentData)
-        console.log(response)
+        return response.data
+    }
+)
+
+export const deleteStudentAsync = createAsyncThunk(
+    'students/deleteStudent',
+    async(studentId) => {
+        const response = await axios.delete(`http://localhost:3000/students/${studentId}`)
         return response.data
     }
 )
@@ -92,6 +98,17 @@ export const studentSlice = createSlice(
                 .addCase(updateStudentAsync.rejected, (state, action) => {
                     state.status = 'error',
                     state.error = action.error.message
+                })
+                .addCase(deleteStudentAsync.pending, (state) => {
+                    state.status = 'loading'
+                })
+                .addCase(deleteStudentAsync.fulfilled, (state, action) => {
+                    state.status = 'success',
+                    state.students.filter(student => student._id !== action.payload._id)
+                })
+                .addCase(deleteStudentAsync.rejected, (state, action) => {
+                    state.status = 'error',
+                    state.error = action.payload.error
                 })
         }
     }

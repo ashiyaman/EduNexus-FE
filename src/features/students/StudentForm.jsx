@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux"
 
 import Header from "../../components/Header"
 import { addStudentAsync, updateStudentAsync } from "./studentSlice"
-import { Navigate, useLocation } from "react-router-dom"
+import { Navigate, useLocation, useNavigate } from "react-router-dom"
 
 const StudentForm = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const student = useLocation().state
 
     const [name, setName] = useState(student ? student.name : '')
@@ -40,12 +41,15 @@ const StudentForm = () => {
     
             if(newStudent){
                 dispatch(addStudentAsync(newStudent))
-                setName('')
-                setAge('')
-                setGrade('')
-                setGender('')
+                    .then(() => {
+                        setName('')
+                        setAge('')
+                        setGrade('')
+                        setGender('')
+                    })                
             }
-        }        
+        }  
+        navigate('/students')      
     }
 
     return (
@@ -75,8 +79,7 @@ const StudentForm = () => {
                     }
                     {!student && 
                         <input type='submit' value='Add' className='mx-auto btn btn-success text-light btn-outline-warning fw-bold'/>
-                    }
-                    
+                    }                
 
                 </form>
             </main>
