@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
-import { act } from "react"
 
 export const fetchStudents = createAsyncThunk(
     'students/fetchStudents',
@@ -37,7 +36,7 @@ export const updateStudentAsync = createAsyncThunk(
 export const deleteStudentAsync = createAsyncThunk(
     'students/deleteStudent',
     async(studentId) => {
-        const response = await axios.delete(`http://localhost:3000/students/${studentId}`)
+        const response = await axios.delete(`https://edu-nexus-be.vercel.app/students/${studentId}`)
         return response.data
     }
 )
@@ -49,9 +48,22 @@ export const studentSlice = createSlice(
             students: [],
             selectedStudent: null,
             status: 'idle',
-            error: null
+            error: null,
+            filter: 'All',
+            sortBy: 'name',
+            filteredStudents: []
         },
         reducers: {
+            setFilter: (state, action) => {
+                state.filter = action.payload
+                if(action.payload === 'All'){
+                   state.filteredStudents = state.students
+                }
+                else{
+                    state.filteredStudents = state.students.filter(
+                        student => action.payload === 'Boys' ? student.gender === 'Male' : student.gender === 'Female')
+                }
+            }
         },
         extraReducers: (builder) => {
             builder
@@ -104,7 +116,7 @@ export const studentSlice = createSlice(
                 })
                 .addCase(deleteStudentAsync.fulfilled, (state, action) => {
                     state.status = 'success',
-                    state.students.filter(student => student._id !== action.payload._id)
+                    state.students = state.students.filter(student => student._id !== action.payload._id)
                 })
                 .addCase(deleteStudentAsync.rejected, (state, action) => {
                     state.status = 'error',
@@ -115,4 +127,6 @@ export const studentSlice = createSlice(
 )
 
 export default studentSlice.reducer
+
+export const {setFilter} = studentSlice.actions
 
