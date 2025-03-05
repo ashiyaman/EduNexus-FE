@@ -64,11 +64,11 @@ const StudentForm = () => {
                     <label>Gender: </label>
                     <div className='form-check'>                        
                         <input type='radio' className='form-check-input' 
-                            onChange={(e) => setGender(e.target.value)} name='gender' value='Male' checked={gender === 'Male'} />Male                         
+                            onChange={(e) => setGender(e.target.value)} name='gender' value='Male' checked={gender == 'Male' ? 'Male' : ''} />Male                         
                     </div>
                     <div className='form-check'> 
                         <input type='radio' className='form-check-input'
-                            onChange={(e) => setGender(e.target.value)} name='gender' value='Female' checked={gender === 'Female'}/>Female
+                            onChange={(e) => setGender(e.target.value)} name='gender' value='Female' checked={gender == 'Female' ? 'Female' : ''}/>Female
                     </div><br/>
                     {student && 
                         <>

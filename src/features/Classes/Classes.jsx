@@ -8,12 +8,19 @@ import Header from "../../components/Header"
 
 const Classes = () => {
     const dispatch = useDispatch()
+    const {students} = useSelector(state => state.students)
     const {filteredStudents, status, error} = useSelector(state => state.students)
+
+    console.log(students)
+    console.log(filteredStudents)
 
     useEffect(() => {
         dispatch(fetchStudents())
+    }, [])  
+    
+    useEffect(() => {
         dispatch(setFilter('All'))
-    }, [])   
+    }, [students])
     
     const handleFilterChange = (e) => {
         dispatch(setFilter(e.target.value))

@@ -57,6 +57,7 @@ export const studentSlice = createSlice(
             setFilter: (state, action) => {
                 state.filter = action.payload
                 if(action.payload === 'All'){
+                    console.log('...sli...', state.students)
                    state.filteredStudents = state.students
                 }
                 else{
