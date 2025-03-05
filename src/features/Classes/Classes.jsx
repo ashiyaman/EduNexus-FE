@@ -11,9 +11,6 @@ const Classes = () => {
     const {students} = useSelector(state => state.students)
     const {filteredStudents, status, error} = useSelector(state => state.students)
 
-    console.log(students)
-    console.log(filteredStudents)
-
     useEffect(() => {
         dispatch(fetchStudents())
     }, [])  
