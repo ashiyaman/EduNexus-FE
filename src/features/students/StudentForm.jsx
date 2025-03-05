@@ -1,9 +1,9 @@
-import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import Header from "../../components/Header"
-import { addStudentAsync, updateStudentAsync } from "./studentSlice"
-import { Navigate, useLocation, useNavigate } from "react-router-dom"
+import Header from '../../components/Header'
+import { addStudentAsync, updateStudentAsync } from './studentSlice'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 
 const StudentForm = () => {
     const dispatch = useDispatch()
@@ -55,8 +55,8 @@ const StudentForm = () => {
     return (
         <>
             <Header />
-            <main className="container py-4">
-                <h3 className="my-3">Add Student</h3>
+            <main className='container py-4'>
+                <h3 className='my-3'>Add Student</h3>
                 <form onSubmit={handleSubmit}>
                     <input type='text' placeholder='Name' className='form-control' onChange={(e) => setName(e.target.value)} value={name} /><br/>
                     <input type='number' placeholder='Age' className='form-control' onChange={(e) => setAge(e.target.value)} value={age} /><br/>

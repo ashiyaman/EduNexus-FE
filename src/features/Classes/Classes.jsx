@@ -1,9 +1,9 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import {fetchStudents, setFilter} from '../students/studentSlice'
-import Header from "../../components/Header"
+import {fetchStudents, setFilter, setSortBy} from '../students/studentSlice'
+import Header from '../../components/Header'
 
 
 const Classes = () => {
@@ -18,9 +18,17 @@ const Classes = () => {
     useEffect(() => {
         dispatch(setFilter('All'))
     }, [students])
+
+    useEffect(() => {
+        dispatch(setSortBy('Name'))
+    }, [])
     
     const handleFilterChange = (e) => {
         dispatch(setFilter(e.target.value))
+    }
+
+    const handleSortChange = (e) => {
+        dispatch(setSortBy(e.target.value))
     }
 
     return (
@@ -36,7 +44,7 @@ const Classes = () => {
                         <option value='Girls'>Girls</option>
                     </select>
                     <label>Sort By:</label>
-                    <select className='form-select my-2' onChange={(e) => dispatch(setFilter(e.target.value))}>
+                    <select className='form-select my-2' onChange={(e) => handleSortChange(e)}>
                         <option value='Name'>Name</option>
                         <option value='Marks'>Marks</option>
                         <option value='Attendance'>Attendance</option>

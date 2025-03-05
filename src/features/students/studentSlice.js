@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "axios"
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 export const fetchStudents = createAsyncThunk(
     'students/fetchStudents',
@@ -51,19 +51,29 @@ export const studentSlice = createSlice(
             error: null,
             filter: 'All',
             sortBy: 'name',
-            filteredStudents: []
+            filteredStudents: [],
+            sortedStudents: []
         },
         reducers: {
             setFilter: (state, action) => {
                 state.filter = action.payload
                 if(action.payload === 'All'){
-                    console.log('...sli...', state.students)
                    state.filteredStudents = state.students
                 }
                 else{
                     state.filteredStudents = state.students.filter(
                         student => action.payload === 'Boys' ? student.gender === 'Male' : student.gender === 'Female')
                 }
+            },
+            setSortBy: (state, action) => {
+                state.sortedStudents = 
+                    (action.payload === 'Name') ?
+                        (state.filteredStudents ? state.filteredStudents.sort((a, b) => a.name.localeCompare(b.name)) : state.students.sort((a, b) => a.name.localeCompare(b.name)))
+                        :
+                        ((action.payload === 'Marks') 
+                        ?
+                        (state.filteredStudents ? state.filteredStudents.sort((a, b) => a.marks - b.marks) : state.students.sort((a, b) => a.marks - b.marks)) 
+                        : (state.filteredStudents ? state.filteredStudents.sort((a, b) => a.attendance - b.attendance) : state.students.sort((a, b) => a.attendance - b.attendance)))
             }
         },
         extraReducers: (builder) => {
@@ -130,4 +140,6 @@ export const studentSlice = createSlice(
 export default studentSlice.reducer
 
 export const {setFilter} = studentSlice.actions
+
+export const {setSortBy} = studentSlice.actions
 

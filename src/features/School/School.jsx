@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux"
-import Header from "../../components/Header"
-import { useEffect } from "react"
-import { fetchStudents } from "../students/studentSlice"
-import { updateSchoolStats, setTopStudent } from "./schoolSlice"
+import { useDispatch, useSelector } from 'react-redux'
+import Header from '../../components/Header'
+import { useEffect } from 'react'
+import { fetchStudents } from '../students/studentSlice'
+import { updateSchoolStats, setTopStudent } from './schoolSlice'
 
 const School = () => {
     const dispatch = useDispatch()
@@ -40,11 +40,11 @@ const School = () => {
             <Header/>
             <main className='container py-4' style={{minHeight: '100vh'}}>
                 <h2 className='text-dark my-3'>School View</h2>
-                <section className="my-2">
-                    <p className="fw-semibold text-success">Total Students: {totalStudents? totalStudents : 0}</p>
-                    <p className="fw-semibold text-success">Average Attendance: {avgAttendance ? avgAttendance.toFixed(2) : 0}</p>
-                    <p className="fw-semibold text-success">Average Marks: {avgMarks ? avgMarks.toFixed(2) : 0}</p>
-                    <p className="fw-semibold text-success">Top Student: {topStudent ? topStudent.name : '-' }</p>
+                <section className='my-2'>
+                    <p className='fw-semibold text-success'>Total Students: {totalStudents? totalStudents : 0}</p>
+                    <p className='fw-semibold text-success'>Average Attendance: {avgAttendance ? avgAttendance.toFixed(2) : 0}</p>
+                    <p className='fw-semibold text-success'>Average Marks: {avgMarks ? avgMarks.toFixed(2) : 0}</p>
+                    <p className='fw-semibold text-success'>Top Student: {topStudent ? topStudent.name : '-' }</p>
                 </section>
             </main>
         </>
