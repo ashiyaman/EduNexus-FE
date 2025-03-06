@@ -34,8 +34,10 @@ const Teachers = () => {
         <>
             <Header />
             <main className='container py-4'>
+                <h2 className='text-dark mb-3'>Teachers List</h2>
+                {status === 'loading' && <p>Loading...</p>}
+                {error && <p>{error}</p>}
                 <Link to='/teachers/teacherForm' className='btn btn-outline-success mb-4 fw-bold btn-warning'>Add Teacher</Link>
-                <h2 className='text-dark'>Teachers List</h2>
                 {teachers && (status === 'success') && <TeacherList teachers={teachers}/>}
             </main>
         </>

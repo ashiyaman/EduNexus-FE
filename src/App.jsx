@@ -9,6 +9,7 @@ import School from './features/School/School'
 import StudentForm from './features/students/StudentForm'
 import StudentDetail from './features/students/StudentDetail'
 import Teachers from './features/teachers/Teachers'
+import TeacherDetail from './features/teachers/TeacherDetail'
 import TeacherForm from './features/teachers/TeacherForm'
 
 function App() {
@@ -37,7 +38,10 @@ function App() {
           <Route 
             path='/teachers'
             element={<Teachers />} />
-            <Route 
+          <Route 
+            path='/teachers/:teacherId'
+            element={<TeacherDetail />} />
+          <Route 
             path='/teachers/teacherForm'
             element={<TeacherForm />}/>
         </Routes>

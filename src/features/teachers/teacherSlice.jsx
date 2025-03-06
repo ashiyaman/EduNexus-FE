@@ -11,6 +11,18 @@ export const fetchTeachers = createAsyncThunk(
     }
 )
 
+export const deleteTeacherAsync = createAsyncThunk(
+    'teachers/delete',
+    async(teacherId) => {
+        console.log(teacherId)
+        const response = await axios.delete(`https://edu-nexus-be.vercel.app/teachers/${teacherId}`)
+        console.log(response)
+        if(response){
+            return response.data
+        }
+    }
+)
+
 export const teacherSlice = createSlice({
     name: 'teachers',
     initialState: {
@@ -31,6 +43,17 @@ export const teacherSlice = createSlice({
                 state.teachers = action.payload
             })
             .addCase(fetchTeachers.rejected, (state, action) => {
+                state.status = 'error',
+                state.error = action.payload
+            })
+            .addCase(deleteTeacherAsync.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(deleteTeacherAsync.fulfilled, (state, action) => {
+                state.status = 'success',
+                state.teachers = state.teachers.filter(teacher => teacher._id !== action.payload._id)
+            })
+            .addCase(deleteTeacherAsync.rejected, (state, action) => {
                 state.status = 'error',
                 state.error = action.payload
             })
