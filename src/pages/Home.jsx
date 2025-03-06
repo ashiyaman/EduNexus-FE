@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
 
 const Home = () => {
     return (
@@ -12,6 +12,9 @@ const Home = () => {
           </li>
           <li className='bg-success my-2 rounded'>
             <Link to='/school' className='fw-bold text-light btn btn-lg btn-outline-warning' style={{minWidth: '50vw'}}>For School</Link>
+          </li>
+          <li className='bg-success my-2 rounded'>
+            <Link to='/teachers' className='fw-bold text-light btn btn-lg btn-outline-warning' style={{minWidth: '50vw'}}>For Teachers</Link>
           </li>
         </ul>
       </div>

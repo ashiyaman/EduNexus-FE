@@ -8,6 +8,8 @@ import Classes from './features/Classes/Classes'
 import School from './features/School/School'
 import StudentForm from './features/students/StudentForm'
 import StudentDetail from './features/students/StudentDetail'
+import Teachers from './features/teachers/Teachers'
+import TeacherForm from './features/teachers/TeacherForm'
 
 function App() {
   return (
@@ -29,9 +31,15 @@ function App() {
           <Route 
             path='/students/studentForm'
             element={<StudentForm />}/>
+          <Route 
+            path='/students/:studentId'
+            element={<StudentDetail />} />
+          <Route 
+            path='/teachers'
+            element={<Teachers />} />
             <Route 
-              path='/students/:studentId'
-              element={<StudentDetail />} />
+            path='/teachers/teacherForm'
+            element={<TeacherForm />}/>
         </Routes>
       </div>
     </Router>
