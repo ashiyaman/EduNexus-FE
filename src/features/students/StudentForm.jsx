@@ -56,7 +56,7 @@ const StudentForm = () => {
         <>
             <Header />
             <main className='container py-4'>
-                <h3 className='my-3'>Add Student</h3>
+                <h3 className='my-3 text-success'>Add Student</h3>
                 <form onSubmit={handleSubmit}>
                     <input type='text' placeholder='Name' className='form-control' onChange={(e) => setName(e.target.value)} value={name} /><br/>
                     <input type='number' placeholder='Age' className='form-control' onChange={(e) => setAge(e.target.value)} value={age} /><br/>

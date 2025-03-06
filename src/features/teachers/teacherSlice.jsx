@@ -11,12 +11,30 @@ export const fetchTeachers = createAsyncThunk(
     }
 )
 
+export const addTeacherAsync = createAsyncThunk(
+    'teachers/add',
+    async(newTeacher) => {
+        const response = await axios.post(`http://localhost:3000/teachers`, newTeacher)
+        if(response){
+            return response.data
+        }
+    }
+)
+
+export const updateTeacherAsync = createAsyncThunk(
+    'teachers/update',
+    async (teacherData) => {
+        const response = await axios.put(`http://localhost:3000/teachers/${teacherData._id}`, teacherData)
+        if(response){
+            return response.data
+        }
+    }
+)
+
 export const deleteTeacherAsync = createAsyncThunk(
     'teachers/delete',
     async(teacherId) => {
-        console.log(teacherId)
         const response = await axios.delete(`https://edu-nexus-be.vercel.app/teachers/${teacherId}`)
-        console.log(response)
         if(response){
             return response.data
         }
@@ -28,7 +46,8 @@ export const teacherSlice = createSlice({
     initialState: {
         teachers: [],
         status: 'idle',
-        error: null
+        error: null,
+        selectedTeacher: null
     },
     reducers: {
 
@@ -54,6 +73,28 @@ export const teacherSlice = createSlice({
                 state.teachers = state.teachers.filter(teacher => teacher._id !== action.payload._id)
             })
             .addCase(deleteTeacherAsync.rejected, (state, action) => {
+                state.status = 'error',
+                state.error = action.payload
+            })
+            .addCase(updateTeacherAsync.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(updateTeacherAsync.fulfilled, (state, action) => {
+                state.status = 'success',
+                state.selectedTeacher = action.payload
+            })
+            .addCase(updateTeacherAsync.rejected, (state, action) => {
+                state.status = 'error',
+                state.error = action.payload
+            })
+            .addCase(addTeacherAsync.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(addTeacherAsync.fulfilled, (state, action) => {
+                state.status = 'success',
+                state.teachers.push(action.payload)
+            })
+            .addCase(addTeacherAsync.rejected, (state, action) => {
                 state.status = 'error',
                 state.error = action.payload
             })

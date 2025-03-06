@@ -12,7 +12,6 @@ const TeacherDetail = () => {
     const {teachers, status, error} = useSelector(state => state.teachers)
     
     const selectedTeacher = teachers.find(teacher => teacher._id === teacherId.teacherId)
-    console.log(selectedTeacher)
 
     const handleDelete = () => {
       dispatch(deleteTeacherAsync(selectedTeacher._id))
