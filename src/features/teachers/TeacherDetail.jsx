@@ -31,7 +31,7 @@ const TeacherDetail = () => {
                 {selectedTeacher && 
                     <div>
                         <p className='fw-medium'>Name: {selectedTeacher.name}</p>
-                        <p className='fw-medium'>Subject: {selectedTeacher.subject}</p>
+                        <p className='fw-medium'>subjects: {selectedTeacher.subjects.join(', ')}</p>
                         <p className='fw-medium'>Experience: {selectedTeacher.experience}</p>
                         <p className='fw-medium'>Email: {selectedTeacher.email}</p>
                         <p className='fw-medium'>Phone No: {selectedTeacher.phone}</p>

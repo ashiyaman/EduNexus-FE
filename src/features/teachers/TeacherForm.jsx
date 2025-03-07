@@ -9,7 +9,7 @@ const TeacherForm = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [name, setName] = useState(selectedTeacher ? selectedTeacher.name : '')
-    const [subject, setSubject] = useState(selectedTeacher ? selectedTeacher.subject : '')
+    const [subjects, setsubjects] = useState(selectedTeacher ? selectedTeacher.subjects : '')
     const [experience, setExperience] = useState(selectedTeacher ? selectedTeacher.experience : '')
     const [email, setEmail] = useState(selectedTeacher ? selectedTeacher.email : '')
     const [phone, setPhone] = useState(selectedTeacher ? selectedTeacher.phone : '')
@@ -18,7 +18,7 @@ const TeacherForm = () => {
         e.preventDefault()
         const teacherData = {
             name: name,
-            subject: subject,
+            subjects: subjects,
             experience: experience,
             email: email,
             phone: phone
@@ -32,7 +32,7 @@ const TeacherForm = () => {
             dispatch(addTeacherAsync(teacherData))
         }
         setName('')
-        setSubject('')
+        setsubjects('')
         setExperience('')
         setEmail('')
         setPhone('')
@@ -46,7 +46,7 @@ const TeacherForm = () => {
                 <h3 className='my-3 text-success'>Add Teacher</h3>
                 <form onSubmit={handleSubmit}>
                     <input type='text' value={name} onChange={(e) => setName(e.target.value)} className='form-control' placeholder='Teacher Name'/><br/>
-                    <input type='text' value={subject} onChange={(e) => setSubject(e.target.value)} className='form-control' placeholder='Subject'/><br/>
+                    <input type='text' value={subjects} onChange={(e) => setsubjects(e.target.value)} className='form-control' placeholder='subjects'/><br/>
                     <input type='text' value={experience} onChange={(e) => setExperience(e.target.value)} className='form-control' placeholder='Experience'/><br/>
                     <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} className='form-control' placeholder='Email'/><br/>
                     <input type='text' value={phone} onChange={(e) => setPhone(e.target.value)} className='form-control' placeholder='Phone No.'/><br/>
